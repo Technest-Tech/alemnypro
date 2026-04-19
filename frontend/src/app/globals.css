@@ -144,6 +144,8 @@ html {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   scroll-behavior: smooth;
+  /* Prevent horizontal scroll caused by fixed bottom nav on mobile */
+  overflow-x: hidden;
 }
 
 body {
@@ -152,6 +154,8 @@ body {
   background-color: var(--bg);
   line-height: var(--leading-normal);
   min-height: 100vh;
+  /* Prevent any child element from causing horizontal scroll */
+  overflow-x: hidden;
 }
 
 /* RTL Support */

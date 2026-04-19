@@ -252,6 +252,10 @@
   bottom: 0;
   left: 0;
   right: 0;
+  /* Clamp to viewport width — prevents horizontal overflow on mobile */
+  width: 100vw;
+  max-width: 100vw;
+  box-sizing: border-box;
   z-index: 300;
   height: var(--mobile-bottom-nav-height);
   padding-bottom: var(--safe-area-bottom);
@@ -262,6 +266,7 @@
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
   align-items: stretch;
   justify-content: space-around;
+  overflow: hidden;
 }
 
 .bottomNavItem {
