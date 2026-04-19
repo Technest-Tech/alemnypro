@@ -27,12 +27,12 @@ export default function Step2Pitch({ locale, onNext, onBack, initialData }: Prop
     setLoading(true);
     setError('');
     try {
+      const suffix = locale === 'ar' ? '_ar' : '_en';
       await onboardingApi.saveStep2({
-        headline: headline.trim(),
-        bio_background: bioBackground.trim(),
-        bio_method: bioMethod.trim(),
-        locale,
-      });
+        [`headline${suffix}`]: headline.trim(),
+        [`bio${suffix}`]: bioBackground.trim(),
+        [`bio_method${suffix}`]: bioMethod.trim(),
+      } as Parameters<typeof onboardingApi.saveStep2>[0]);
       onNext();
     } catch (err: unknown) {
       const e = err as { response?: { data?: { message?: string } } };
