@@ -342,7 +342,7 @@ export default function AdminSessionsPage() {
               return (
                 <div key={s.id}
                   style={{ display: 'grid', gridTemplateColumns: '60px 1fr 1fr 130px 110px 100px 90px', gap: 0, padding: '13px 24px', borderBottom: '1px solid #F3F4F6', alignItems: 'center', cursor: 'pointer', transition: 'background 0.1s' }}
-                  onClick={() => handleOpen(s.id)}
+                  onClick={() => handleOpen(s)}
                   onMouseEnter={e => (e.currentTarget.style.background = '#FAFAFA')}
                   onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
                 >
