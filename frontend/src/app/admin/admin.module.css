@@ -1,0 +1,502 @@
+/* ════════════════════════════════════════════════════════
+   ALEMNYPRO — ADMIN DASHBOARD CSS MODULE
+   All admin pages share this stylesheet
+   ════════════════════════════════════════════════════════ */
+
+/* ─── App Shell ─── */
+.dashLayout {
+  display: flex;
+  min-height: 100vh;
+  background: #F0F2F5;
+  font-family: var(--font-en, 'Inter', sans-serif);
+}
+
+[dir="rtl"] .dashLayout {
+  font-family: var(--font-ar, 'Tajawal', sans-serif);
+}
+
+/* ════════════════════════════════════════════════════════
+   SIDEBAR
+   ════════════════════════════════════════════════════════ */
+.dashSidebar {
+  width: 260px;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #0a1929 0%, #1B4965 100%);
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 var(--space-6, 1.5rem);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  flex-shrink: 0;
+  box-shadow: 4px 0 24px rgba(0,0,0,0.15);
+  z-index: 50;
+}
+
+@media (max-width: 900px) {
+  .dashSidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 200;
+  }
+
+  [dir="rtl"] .dashSidebar {
+    left: auto;
+    right: 0;
+    transform: translateX(100%);
+  }
+
+  .dashSidebarOpen {
+    transform: translateX(0) !important;
+  }
+}
+
+/* ─── Logo ─── */
+.dashLogo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 24px 20px 20px;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 8px;
+}
+
+.dashLogoText {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+.dashLogoAccent {
+  color: #F4A261;
+}
+
+/* ─── Admin badge ─── */
+.dashAdminBadge {
+  margin: 0 16px 12px;
+  padding: 5px 12px;
+  background: rgba(244,162,97,0.15);
+  border: 1px solid rgba(244,162,97,0.3);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #F4A261;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* ─── Nav section label ─── */
+.dashNavSection {
+  padding: 12px 20px 6px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+}
+
+/* ─── Nav ─── */
+.dashNav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 4px 12px;
+}
+
+.dashNavLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.65);
+  text-decoration: none;
+  transition: all 0.18s ease;
+}
+
+.dashNavLink:hover {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+}
+
+.dashNavLinkActive {
+  background: rgba(255,255,255,0.12) !important;
+  color: #fff !important;
+  box-shadow: inset 3px 0 0 #F4A261;
+}
+
+[dir="rtl"] .dashNavLinkActive {
+  box-shadow: inset -3px 0 0 #F4A261;
+}
+
+.dashNavIcon {
+  font-size: 1.1rem;
+  width: 22px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.dashNavBadge {
+  margin-inline-start: auto;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 10px;
+  background: #E76F51;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashNavSpacer {
+  flex: 1;
+  min-height: 20px;
+}
+
+.dashNavDivider {
+  height: 1px;
+  background: rgba(255,255,255,0.07);
+  margin: 8px 0;
+}
+
+/* ─── User Box ─── */
+.dashUserBox {
+  margin: 12px;
+  padding: 14px;
+  background: rgba(255,255,255,0.07);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.dashUserAvatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #F4A261, #E76F51);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.dashUserInfo { flex: 1; min-width: 0; }
+
+.dashUserName {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dashUserRole {
+  font-size: 0.6875rem;
+  color: rgba(255,255,255,0.45);
+  font-weight: 500;
+  margin-top: 1px;
+}
+
+/* ════════════════════════════════════════════════════════
+   MAIN CONTENT AREA
+   ════════════════════════════════════════════════════════ */
+.dashMain {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ─── Top bar ─── */
+.dashTopBar {
+  background: #fff;
+  border-bottom: 1px solid #E9EBF0;
+  padding: 14px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+
+.dashTopBarTitle {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #1A1A2E;
+}
+
+.dashTopBarBreadcrumb {
+  font-size: 0.8125rem;
+  color: #9CA3AF;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ─── Content padding ─── */
+.dashContent {
+  padding: 28px;
+  flex: 1;
+}
+
+/* Legacy .dashMain > direct children spacing support */
+.dashMain > .dashHeader,
+.dashMain > .statsRow,
+.dashMain > .dashGrid,
+.dashMain > .dashCard {
+  margin-left: 28px;
+  margin-right: 28px;
+}
+
+/* ─── Header ─── */
+.dashHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 28px 28px 20px;
+  background: #fff;
+  border-bottom: 1px solid #E9EBF0;
+  margin-bottom: 24px !important;
+  position: sticky;
+  top: 0;
+  z-index: 30;
+}
+
+.dashTitle {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #1A1A2E;
+  letter-spacing: -0.02em;
+  margin: 0 0 4px;
+}
+
+.dashSubtitle {
+  font-size: 0.875rem;
+  color: #6B7280;
+  margin: 0;
+}
+
+/* ─── Stats Row ─── */
+.statsRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding: 0 28px 24px;
+}
+
+@media (max-width: 1100px) { .statsRow { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px)  { .statsRow { grid-template-columns: 1fr; } }
+
+/* ─── Stat Card ─── */
+.statCard {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid #E9EBF0;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  transition: all 0.2s ease;
+}
+
+.statCard:hover {
+  box-shadow: 0 6px 20px rgba(27,73,101,0.1);
+  transform: translateY(-2px);
+}
+
+.statCardIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.375rem;
+  flex-shrink: 0;
+}
+
+.statCardIcon.blue   { background: #EFF6FF; }
+.statCardIcon.green  { background: #ECFDF5; }
+.statCardIcon.orange { background: #FFF7ED; }
+.statCardIcon.purple { background: #F5F3FF; }
+.statCardIcon.red    { background: #FEF2F2; }
+
+.statCardValue {
+  display: block;
+  font-size: 1.875rem;
+  font-weight: 900;
+  color: #1A1A2E;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.statCardLabel {
+  display: block;
+  font-size: 0.8125rem;
+  color: #6B7280;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+/* ─── Dashboard Grid ─── */
+.dashGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 0 28px 28px;
+}
+
+@media (max-width: 900px) { .dashGrid { grid-template-columns: 1fr; } }
+
+/* ─── Dash Card ─── */
+.dashCard {
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid #E9EBF0;
+  padding: 22px 24px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  margin: 0 28px 20px;
+}
+
+.dashCardTitle {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #1A1A2E;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #F3F4F6;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ─── Booking Item (used in verif queue) ─── */
+.bookingItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #F3F4F6;
+}
+
+.bookingItem:last-child { border-bottom: none; }
+
+.bookingName {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #1A1A2E;
+}
+
+.bookingMeta {
+  font-size: 0.75rem;
+  color: #9CA3AF;
+  margin-top: 2px;
+}
+
+/* ─── Status badges ─── */
+.bookingStatus {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.pending   { background: #FEF3C7; color: #92400E; }
+.accepted  { background: #D1FAE5; color: #065F46; }
+.cancelled { background: #FEE2E2; color: #991B1B; }
+.completed { background: #DBEAFE; color: #1E40AF; }
+
+/* ─── Tag buttons (filter pills) ─── */
+.tag {
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1.5px solid #E5E7EB;
+  background: #fff;
+  color: #6B7280;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+
+.tag:hover { border-color: #1B4965; color: #1B4965; }
+
+.tag-active {
+  background: #1B4965;
+  border-color: #1B4965;
+  color: #fff;
+}
+
+/* ─── Full-width page content (for sub-pages with their own layout) ─── */
+.dashPageContent {
+  padding: 28px;
+  flex: 1;
+}
+
+@media (max-width: 768px) {
+  .dashPageContent { padding: 16px; }
+  .dashHeader { padding: 16px 16px 14px; position: static; }
+  .statsRow { padding: 0 16px 16px; }
+  .dashCard { margin: 0 16px 16px; }
+  .dashGrid { padding: 0 16px 16px; }
+  .dashTitle { font-size: 1.25rem; }
+}
+
+/* ─── Mobile menu toggle ─── */
+.dashMobileToggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  color: #1A1A2E;
+  font-size: 1.25rem;
+}
+
+@media (max-width: 900px) {
+  .dashMobileToggle { display: flex; align-items: center; }
+}
+
+/* ─── Overlay (mobile) ─── */
+.dashOverlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 199;
+}
+
+@media (max-width: 900px) {
+  .dashOverlay { display: block; }
+}

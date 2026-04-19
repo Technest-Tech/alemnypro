@@ -1,0 +1,419 @@
+/* ═══════════════════════════════════════════════════════
+   PREMIUM REGISTER PAGE
+   ═══════════════════════════════════════════════════════ */
+
+.page {
+  min-height: calc(100vh - 72px);
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8) var(--space-4);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Decorative Elements ── */
+.glowOrb1 {
+  position: absolute;
+  top: -120px;
+  right: -120px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.glowOrb2 {
+  position: absolute;
+  bottom: -200px;
+  left: -100px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.wrapper {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 960px;
+}
+
+/* ═══ STEP 1: ROLE CHOOSER ═══ */
+
+.roleChooserCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 24px;
+  padding: 48px;
+  text-align: center;
+  box-shadow: 0 24px 48px rgba(0,0,0,0.05);
+  animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.roleTitle {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 900;
+  color: var(--text);
+  margin-bottom: var(--space-2);
+}
+
+.roleSubtitle {
+  font-size: var(--text-base);
+  color: var(--text-muted);
+  margin-bottom: var(--space-10);
+  font-weight: 500;
+}
+
+.roleGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  max-width: 700px;
+  margin: 0 auto var(--space-10);
+}
+
+@media (max-width: 640px) {
+  .roleGrid { grid-template-columns: 1fr; }
+  .roleChooserCard { padding: 32px 20px; }
+}
+
+.roleCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 32px;
+  background: var(--bg);
+  border: 2px solid var(--border);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+
+.roleCard:hover {
+  transform: translateY(-6px);
+  border-color: var(--primary);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+}
+
+.roleCardIcon {
+  font-size: 3.5rem;
+  margin-bottom: var(--space-5);
+  display: block;
+  transition: transform 0.3s;
+}
+
+.roleCard:hover .roleCardIcon {
+  transform: scale(1.12);
+}
+
+.roleCardTitle {
+  font-size: var(--text-xl);
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: var(--space-2);
+}
+
+.roleCardDesc {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: 1.6;
+  font-weight: 500;
+  margin-bottom: var(--space-5);
+}
+
+.roleCardArrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 24px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 100px;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  border: none;
+  pointer-events: none;
+  transition: all 0.2s;
+}
+
+.roleCard:hover .roleCardArrow {
+  background: var(--primary-dark);
+  transform: translateX(4px);
+}
+
+.loginLink {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.loginLinkA {
+  color: var(--primary);
+  font-weight: 700;
+  text-decoration: none;
+  margin-inline-start: var(--space-1);
+}
+
+.loginLinkA:hover {
+  text-decoration: underline;
+}
+
+/* ═══ STEP 2: STUDENT FORM ═══ */
+
+.formCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 24px;
+  padding: 48px;
+  max-width: 520px;
+  margin: 0 auto;
+  box-shadow: 0 24px 48px rgba(0,0,0,0.05);
+  animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (max-width: 640px) {
+  .formCard { padding: 28px 20px; }
+}
+
+.backBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: var(--space-6);
+  padding: 0;
+  transition: color 0.2s;
+  font-family: inherit;
+}
+
+.backBtn:hover { color: var(--text); }
+
+.formTitle {
+  font-size: var(--text-2xl);
+  font-weight: 900;
+  color: var(--text);
+  margin-bottom: var(--space-1);
+}
+
+.formSubtitle {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  margin-bottom: var(--space-8);
+  font-weight: 500;
+}
+
+/* ── Google Button ── */
+.googleBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+  margin-bottom: var(--space-6);
+}
+
+.googleBtn:hover {
+  border-color: var(--text-muted);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  background: var(--bg-hover);
+}
+
+.googleIcon {
+  flex-shrink: 0;
+}
+
+/* ── Divider ── */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.dividerText {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ── Form Fields ── */
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  margin-bottom: var(--space-6);
+}
+
+.fieldRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+@media (max-width: 500px) {
+  .fieldRow { grid-template-columns: 1fr; }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--text);
+}
+
+.input {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  font-size: var(--text-sm);
+  font-family: inherit;
+  color: var(--text);
+  outline: none;
+  transition: all 0.2s;
+}
+
+.input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px var(--primary-50);
+}
+
+.input::placeholder {
+  color: var(--text-muted);
+}
+
+.passwordWrap {
+  position: relative;
+}
+
+.eyeBtn {
+  position: absolute;
+  top: 50%;
+  inset-inline-end: 14px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+/* ── Error ── */
+.error {
+  padding: 12px 16px;
+  background: var(--danger-50);
+  color: var(--danger);
+  border: 1px solid rgba(230, 57, 70, 0.15);
+  border-radius: 12px;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  margin-bottom: var(--space-5);
+}
+
+/* ── Submit Button ── */
+.submitBtn {
+  width: 100%;
+  padding: 14px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  font-size: var(--text-base);
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+  margin-bottom: var(--space-6);
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(27, 73, 101, 0.25);
+}
+
+.submitBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ── Terms ── */
+.terms {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 1.6;
+}
+
+.termsLink {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.termsLink:hover {
+  text-decoration: underline;
+}
+
+/* ── Footer link ── */
+.footer {
+  text-align: center;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  margin-top: var(--space-6);
+}
+
+.footerLink {
+  color: var(--primary);
+  font-weight: 700;
+  text-decoration: none;
+  margin-inline-start: var(--space-1);
+}
+
+.footerLink:hover {
+  text-decoration: underline;
+}

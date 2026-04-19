@@ -1,0 +1,204 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.inputContainer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  transition: all 0.2s;
+}
+
+.inputContainer:focus-within {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px var(--primary-50);
+}
+
+.errorContainer {
+  border-color: var(--danger) !important;
+  box-shadow: 0 0 0 4px var(--danger-50) !important;
+}
+
+.countryBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 12px 0 0 12px;
+  transition: background 0.2s;
+  height: 100%;
+}
+
+[dir="rtl"] .countryBtn {
+  border-radius: 0 12px 12px 0;
+}
+
+.countryBtn:hover {
+  background: var(--bg-alt);
+}
+
+.flag {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.code {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text);
+  direction: ltr; /* Always ltr for phone codes */
+}
+
+.arrow {
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  transition: transform 0.2s;
+}
+
+.arrowUp {
+  transform: rotate(180deg);
+}
+
+.divider {
+  width: 1px;
+  height: 24px;
+  background: var(--border);
+}
+
+.numberInput {
+  flex: 1;
+  padding: 12px 16px;
+  background: transparent;
+  border: none;
+  font-size: var(--text-base);
+  font-family: inherit;
+  color: var(--text);
+  outline: none;
+  width: 100%;
+}
+
+.numberInput::placeholder {
+  color: var(--text-muted);
+}
+
+/* Dropdown */
+.dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  z-index: var(--z-dropdown);
+  overflow: hidden;
+  animation: fadeUp 0.15s ease-out;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.searchWrap {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  gap: 10px;
+}
+
+.searchIcon {
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+.searchInput {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: var(--text-sm);
+  font-family: inherit;
+  color: var(--text);
+}
+
+.searchInput::placeholder {
+  color: var(--text-muted);
+}
+
+.countryList {
+  max-height: 220px;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+/* Customize scrollbar for the list */
+.countryList::-webkit-scrollbar {
+  width: 6px;
+}
+.countryList::-webkit-scrollbar-track {
+  background: transparent;
+}
+.countryList::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 10px;
+}
+
+.countryOption {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px 12px;
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  gap: 12px;
+  text-align: start;
+}
+
+.countryOption:hover {
+  background: var(--bg-alt);
+}
+
+.countryOption.selected {
+  background: var(--primary-50);
+}
+
+.optionFlag {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.optionName {
+  flex: 1;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text);
+}
+
+.optionCode {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--text-secondary);
+  direction: ltr; /* Phone codes should always render LTR */
+}
+
+.noResults {
+  padding: 16px;
+  text-align: center;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}

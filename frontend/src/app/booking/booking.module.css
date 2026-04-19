@@ -1,0 +1,744 @@
+/* ================================================================
+   BOOKING PAGE — Premium Design
+================================================================ */
+
+.page {
+  background: var(--bg);
+  min-height: 100vh;
+  padding: 2rem 0 5rem;
+}
+
+/* ── Back button ── */
+.backBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  margin-bottom: 1.75rem;
+  transition: color 0.15s, gap 0.15s;
+}
+
+.backBtn:hover {
+  color: var(--primary);
+  gap: 0.75rem;
+}
+
+/* ── Two column layout ── */
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; }
+}
+
+/* ══ FORM CARD ═══════════════════════════════════════════════ */
+.formCard {
+  background: var(--bg-card);
+  border-radius: 24px;
+  border: 1px solid var(--border-light);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  overflow: hidden;
+}
+
+.formHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem 2rem 1.5rem;
+  border-bottom: 1px solid var(--border-light);
+  background: linear-gradient(135deg, #f0f4ff 0%, #faf5ff 100%);
+}
+
+.formHeaderIcon {
+  font-size: 2.5rem;
+  line-height: 1;
+}
+
+.title {
+  font-size: 1.375rem;
+  font-weight: 800;
+  color: var(--text);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: 0.25rem 0 0;
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+/* ── Field group ── */
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.fieldLabel {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #374151;
+  letter-spacing: 0.01em;
+}
+
+.fieldInput {
+  width: 100%;
+  height: 50px;
+  padding: 0 1rem;
+  border-radius: 12px;
+  border: 2px solid var(--border);
+  background: var(--bg-alt);
+  font-size: 0.9375rem;
+  font-family: inherit;
+  color: var(--text);
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  outline: none;
+  box-sizing: border-box;
+}
+
+textarea.fieldInput {
+  height: auto;
+  padding-top: 0.875rem;
+  padding-bottom: 0.875rem;
+}
+
+.fieldInput:focus {
+  border-color: var(--primary);
+  background: var(--bg-card);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+/* ── Date/Time row ── */
+.dateTimeRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 500px) {
+  .dateTimeRow { grid-template-columns: 1fr; }
+}
+
+/* ── Format toggle ── */
+.formatToggle {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.formatOption {
+  flex: 1;
+  min-width: 130px;
+  padding: 0.875rem 1rem;
+  border-radius: 12px;
+  border: 2px solid var(--border);
+  background: var(--bg-alt);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.formatOption:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: var(--bg-card);
+}
+
+.formatOptionActive {
+  border-color: var(--primary);
+  background: rgba(99, 102, 241, 0.08);
+  color: var(--primary);
+  box-shadow: 0 0 0 1px var(--primary);
+}
+
+/* ── Subject dropdown ── */
+.subjectDropdown {
+  position: relative;
+}
+
+.subjectTrigger {
+  width: 100%;
+  height: 50px;
+  padding: 0 1rem;
+  border-radius: 12px;
+  border: 2px solid var(--border);
+  background: var(--bg-alt);
+  font-family: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  color: var(--text);
+  text-align: start;
+  box-sizing: border-box;
+}
+
+.subjectTriggerEmpty { color: var(--text-muted); font-weight: 400; }
+
+.subjectTriggerOpen {
+  border-color: var(--primary);
+  background: var(--bg-card);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+.subjectSelected { font-weight: 700; color: var(--text); }
+.subjectPlaceholder { font-weight: 400; color: var(--text-muted); }
+
+.subjectMenu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 14px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+  z-index: 100;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: 260px;
+  overflow-y: auto;
+  animation: dropIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes dropIn {
+  from { opacity: 0; transform: translateY(-8px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.subjectOption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  text-align: start;
+  transition: background 0.15s;
+}
+
+.subjectOption:hover { background: var(--bg-hover); }
+
+.subjectOptionActive {
+  background: rgba(99, 102, 241, 0.08);
+  color: var(--primary);
+}
+
+.subjectOptionName { flex: 1; }
+
+/* ── In-person address + map ── */
+.addressSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: linear-gradient(135deg, #fff7ed, #fef9c3);
+  border-radius: 16px;
+  border: 1.5px solid #fde68a;
+}
+
+/* Address search wrapper */
+.addressSearchWrap {
+  position: relative;
+  z-index: 9999;           /* must be above Leaflet's internal z-index (~400) */
+  isolation: isolate;      /* own stacking context */
+}
+
+.addressInputRow {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.addressSearchIcon {
+  position: absolute;
+  left: 0.9rem;
+  color: #9CA3AF;
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+html[dir='rtl'] .addressSearchIcon {
+  left: auto;
+  right: 0.9rem;
+}
+
+.addressInput {
+  width: 100%;
+  height: 50px;
+  padding: 0 2.75rem 0 2.5rem;
+  border-radius: 12px;
+  border: 2px solid var(--border);
+  background: #fff;
+  font-size: 0.9375rem;
+  font-family: inherit;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+
+html[dir='rtl'] .addressInput {
+  padding: 0 2.5rem 0 2.75rem;
+}
+
+.addressInput:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 4px rgba(99,102,241,0.1);
+}
+
+.addressInput::placeholder { color: #9CA3AF; }
+
+/* Loading spinner inside input */
+.addressSpinner {
+  position: absolute;
+  right: 0.9rem;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #e5e7eb;
+  border-top-color: #6366f1;
+  border-radius: 50%;
+  animation: spin 0.65s linear infinite;
+  flex-shrink: 0;
+}
+
+html[dir='rtl'] .addressSpinner { right: auto; left: 0.9rem; }
+
+/* Clear button */
+.addressClear {
+  position: absolute;
+  right: 0.9rem;
+  background: none;
+  border: none;
+  color: #9CA3AF;
+  cursor: pointer;
+  font-size: 0.8rem;
+  padding: 2px 4px;
+  line-height: 1;
+  border-radius: 4px;
+  transition: color 0.15s;
+}
+
+html[dir='rtl'] .addressClear { right: auto; left: 0.9rem; }
+.addressClear:hover { color: #374151; }
+
+/* Dropdown results */
+.addressMenu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.18);
+  z-index: 9999;           /* above Leaflet map layers */
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: 240px;
+  overflow-y: auto;
+  animation: dropIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.addressNoResults {
+  padding: 0.875rem 1rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #9CA3AF;
+  font-weight: 500;
+}
+
+.addressOption {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 0.85rem;
+  color: var(--text);
+  cursor: pointer;
+  text-align: start;
+  transition: background 0.12s;
+}
+
+.addressOption:hover { background: #f3f4f6; }
+
+.addressOptionText {
+  line-height: 1.45;
+  flex: 1;
+  white-space: normal;
+  word-break: break-word;
+}
+
+
+.mapWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mapHint {
+  font-size: 0.8125rem;
+  color: #92400e;
+  font-weight: 600;
+  margin: 0;
+}
+
+.mapContainer {
+  height: 280px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 2px solid #fde68a;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.coordsBadge {
+  font-size: 0.75rem;
+  color: #6b7280;
+  font-family: monospace;
+  background: #f3f4f6;
+  border-radius: 8px;
+  padding: 0.375rem 0.75rem;
+  margin: 0;
+  text-align: center;
+}
+
+/* ── Error box ── */
+.errorBox {
+  background: #fff1f2;
+  color: #be123c;
+  border: 1.5px solid #fecdd3;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin: 0 2rem;
+}
+
+/* ── Submit button ── */
+.submitBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: calc(100% - 4rem);
+  margin: 0 2rem 2rem;
+  height: 54px;
+  border-radius: 14px;
+  border: none;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 6px 24px rgba(79, 70, 229, 0.4);
+  letter-spacing: -0.01em;
+}
+
+.submitBtn:hover:not(:disabled) {
+  opacity: 0.92;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 32px rgba(79, 70, 229, 0.5);
+}
+
+.submitBtn:disabled {
+  opacity: 0.55;
+  cursor: default;
+  transform: none;
+}
+
+/* Spinner */
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2.5px solid rgba(255,255,255,0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.65s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Success box ── */
+.successBox {
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.successBox h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text);
+  margin: 0 0 0.5rem;
+}
+
+.successBox p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+/* ══ TUTOR CARD ═══════════════════════════════════════════════ */
+.tutorCard {
+  background: var(--bg-card);
+  border-radius: 22px;
+  border: 1px solid var(--border-light);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 100px;
+}
+
+/* Cover image */
+.tutorCardImgWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #f3f4f6;
+}
+.tutorCardImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+/* Level badge over image */
+.tutorCardLevel {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.3px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+[dir='rtl'] .tutorCardLevel { left: auto; right: 10px; }
+
+/* Content body */
+.tutorCardBody {
+  padding: 1.25rem 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.tutorCardName {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--text);
+}
+
+/* Verification badge */
+.tutorCardVerified {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #16a34a;
+}
+.tutorCardUnverified {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #d97706;
+}
+
+.tutorCardHeadline {
+  font-size: 0.8375rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.tutorCardStats {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: var(--bg-alt);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  justify-content: center;
+}
+
+.tutorCardStat {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  justify-content: center;
+}
+
+.tutorCardStatValue {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1;
+}
+
+.tutorCardStatLabel {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.tutorCardStatDivider {
+  width: 1px;
+  height: 28px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+/* Price row: rate + duration side by side */
+.tutorCardPriceRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.tutorCardPrice {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  padding: 0.5rem 0.875rem;
+  background: rgba(99, 102, 241, 0.08);
+  border-radius: 10px;
+  flex: 1;
+}
+
+.tutorCardPriceNum {
+  font-size: 1.375rem;
+  font-weight: 900;
+  color: var(--primary);
+}
+
+.tutorCardPriceUnit {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* Lesson duration pill */
+.tutorCardDuration {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #374151;
+  background: #f3f4f6;
+  border-radius: 10px;
+  padding: 0.5rem 0.75rem;
+  white-space: nowrap;
+}
+
+/* Online rate note */
+.tutorCardOnlineNote {
+  font-size: 0.75rem;
+  color: #6b7280;
+  padding: 4px 8px;
+  background: #f0f9ff;
+  border-radius: 8px;
+  border: 1px solid #bae6fd;
+}
+
+.tutorCardFree {
+  background: #f0fdf4;
+  color: #15803d;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  padding: 0.5rem 0.875rem;
+  border-radius: 10px;
+  border: 1.5px solid #bbf7d0;
+}
+
+/* Pack pricing block */
+.tutorCardPacks {
+  background: #fefce8;
+  border: 1px solid #fde68a;
+  border-radius: 10px;
+  padding: 0.625rem 0.875rem;
+  font-size: 0.8125rem;
+  color: #374151;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.tutorCardPacksTitle {
+  font-weight: 700;
+  color: #92400e;
+  margin-bottom: 2px;
+}
+
+.tutorCardBackLink {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+  margin-top: 0.25rem;
+  transition: opacity 0.15s;
+}
+.tutorCardBackLink:hover { opacity: 0.7; text-decoration: underline; }
+
+/* No-subjects info note */
+.noSubjectsNote {
+  padding: 0.875rem 1rem;
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  color: #0369a1;
+  font-weight: 500;
+  line-height: 1.5;
+}

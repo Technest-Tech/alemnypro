@@ -1,0 +1,30 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE / Editor
+.vscode/
+.idea/
+.fleet/
+.nova/
+.zed/
+
+# Large image assets (not for version control)
+*.jpg
+*.jpeg
+*.png
+!frontend/public/**/*.jpg
+!frontend/public/**/*.jpeg
+!frontend/public/**/*.png
+!frontend/public/**/*.svg
+!frontend/public/**/*.ico
+!backend/public/**/*.jpg
+!backend/public/**/*.jpeg
+!backend/public/**/*.png
+
+# Build strategy doc
+build_strategy.md
+
+# Claude / Gemini
+.claude/
+.gemini/
