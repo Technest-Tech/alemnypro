@@ -515,7 +515,7 @@ export default function StudentMessagesPage() {
                                 <span style={{ color: '#9CA3AF', marginInline: 4 }}>·</span>
                                 {m.lesson_format === 'online' ? (isAr ? '🖥️ أونلاين' : '🖥️ Online') : (isAr ? '🏠 حضوري' : '🏠 In-Person')}
                               </div>
-                              {m.preferred_date && (
+                              {Boolean(m.preferred_date) && (
                                 <div className={s.cardDetail} style={{ color: '#92400E', fontSize: 12 }}>
                                   📅 {String(m.preferred_date)} {m.preferred_time ? `· ⏰ ${fmt12h(String(m.preferred_time), isAr)}` : ''}
                                 </div>
