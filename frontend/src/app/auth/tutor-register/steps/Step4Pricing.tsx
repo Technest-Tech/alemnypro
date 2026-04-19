@@ -45,8 +45,8 @@ export default function Step4Pricing({ locale, onNext, onBack, initialData }: Pr
         group_price_per_seat: groupEnabled ? parseFloat(seatPrice) : null,
         group_max_capacity: groupEnabled ? parseInt(maxCapacity) : null,
         group_min_threshold: groupEnabled ? parseInt(minThreshold) : null,
-        is_first_trial_free: trialFree,
-        trial_duration_minutes: parseInt(trialMins),
+        is_first_lesson_free: trialFree,
+        first_lesson_duration: parseInt(trialMins),
       });
       onNext();
     } catch (err: unknown) {
