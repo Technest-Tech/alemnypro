@@ -52,14 +52,14 @@ export function AppToast({ message, type = 'error', duration = 4000, onDismiss }
   const cfg = CONFIG[type];
   const [visible, setVisible] = useState(false);
   const [leaving, setLeaving] = useState(false);
-  const timerRef = useRef<ReturnType<typeof setTimeout>>();
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     // mount → slide in
     requestAnimationFrame(() => setVisible(true));
 
     timerRef.current = setTimeout(() => dismiss(), duration);
-    return () => clearTimeout(timerRef.current);
+    return () => { if (timerRef.current) clearTimeout(timerRef.current); };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

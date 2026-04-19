@@ -97,7 +97,7 @@ function translateValidationMessage(rawField: string, message: string): string {
   const fieldAr = FIELD_NAMES_AR[rawField] ?? rawField.replace(/_/g, ' ');
 
   // Map common Laravel validation rule messages → Arabic
-  const rules: Array<[RegExp, string]> = [
+  const rules: Array<[RegExp, string | ((...args: string[]) => string)]> = [
     [/must be a string/i,                              `يجب أن يكون نصاً`],
     [/must be a number|must be numeric/i,              `يجب أن يكون رقماً`],
     [/must be an integer/i,                            `يجب أن يكون رقماً صحيحاً`],

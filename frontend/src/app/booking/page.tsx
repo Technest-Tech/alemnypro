@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, Suspense } from 'react';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { useLocale } from '@/lib/locale';
 import { studentApi, publicApi } from '@/lib/api';
@@ -42,7 +42,7 @@ function useDebounce<T>(value: T, delay: number): T {
   return dv;
 }
 
-export default function BookingPage() {
+function BookingContent() {
   const { locale } = useLocale();
   const isAr = locale === 'ar';
   const searchParams = useSearchParams();
@@ -545,7 +545,14 @@ export default function BookingPage() {
           </div>
         </div>
       </main>
-      <Footer />
     </>
+  );
+}
+
+export default function BookingPage() {
+  return (
+    <Suspense fallback={<div style={{ minHeight: '100vh', background: '#f8fafc' }} />}>
+      <BookingContent />
+    </Suspense>
   );
 }

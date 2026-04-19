@@ -51,7 +51,7 @@ export default function SubjectSearch({ onSelect, selectedIds, locale, maxSelect
   const [activeIndex, setActiveIndex] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const debounceRef = useRef<ReturnType<typeof setTimeout>>(undefined);
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const isAr = locale === 'ar';
 
@@ -65,7 +65,7 @@ export default function SubjectSearch({ onSelect, selectedIds, locale, maxSelect
   }, []);
 
   const search = useCallback((q: string) => {
-    clearTimeout(debounceRef.current);
+    if (debounceRef.current) clearTimeout(debounceRef.current);
     if (q.trim().length < 2) {
       setResults([]);
       setIsOpen(q.length > 0);

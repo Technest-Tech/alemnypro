@@ -107,7 +107,7 @@ export default function TutorProfilePage() {
   const [waSending, setWaSending] = useState(false);
   const [waVerifying, setWaVerifying] = useState(false);
   const [waCountdown, setWaCountdown] = useState(0);
-  const countdownRef = useRef<ReturnType<typeof setInterval>>();
+  const countdownRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   // Populate form from API data
   useEffect(() => {
@@ -191,7 +191,7 @@ export default function TutorProfilePage() {
     }
     countdownRef.current = setInterval(() => {
       setWaCountdown(c => {
-        if (c <= 1) { clearInterval(countdownRef.current); return 0; }
+        if (c <= 1) { if (countdownRef.current) clearInterval(countdownRef.current); return 0; }
         return c - 1;
       });
     }, 1000);

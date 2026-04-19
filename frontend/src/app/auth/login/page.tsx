@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useLocale } from '@/lib/locale';
 import { authApi } from '@/lib/api';
 import { saveAuth, getStoredToken, getStoredUser, getRoleHome } from '@/lib/auth';
@@ -9,7 +9,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import Footer from '@/components/layout/Footer';
 import styles from './login.module.css';
 
-export default function LoginPage() {
+function LoginContent() {
   const { locale } = useLocale();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -179,7 +179,14 @@ export default function LoginPage() {
           </div>
         </div>
       </div>
-      <Footer />
     </>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div style={{ minHeight: '100vh', background: '#f8fafc' }} />}>
+      <LoginContent />
+    </Suspense>
   );
 }

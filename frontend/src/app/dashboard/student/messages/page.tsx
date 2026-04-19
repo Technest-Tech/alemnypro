@@ -582,17 +582,17 @@ export default function StudentMessagesPage() {
                             <div className={s.cardTitle} style={{ color: '#065F46' }}>
                               📱 {isAr ? 'بيانات تواصل المعلم' : "Tutor's Contact Details"}
                             </div>
-                            {m.phone && (
+                            {Boolean(m.phone) && (
                               <a href={`tel:${m.phone}`} className={s.contactLink} style={{ color: '#047857' }}>
                                 📞 <span>{String(m.phone)}</span>
                               </a>
                             )}
-                            {m.email && (
+                            {Boolean(m.email) && (
                               <a href={`mailto:${m.email}`} className={s.contactLink} style={{ color: '#047857' }}>
                                 ✉️ <span>{String(m.email)}</span>
                               </a>
                             )}
-                            {m.whatsapp && (
+                            {Boolean(m.whatsapp) && (
                               <a href={`https://wa.me/${String(m.whatsapp).replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" className={s.contactLink} style={{ color: '#25D366', borderBottom: 'none' }}>
                                 💬 <span>WhatsApp</span>
                               </a>

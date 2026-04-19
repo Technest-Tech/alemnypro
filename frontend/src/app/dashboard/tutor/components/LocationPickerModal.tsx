@@ -158,7 +158,7 @@ export default function LocationPickerModal({ isAr, initial, onClose, onSaved }:
   const [suggestions, setSuggestions] = useState<NominatimResult[]>([]);
   const [isSaving, setIsSaving] = useState(false);
   const [mapReady, setMapReady] = useState(false);
-  const debounceRef = useRef<ReturnType<typeof setTimeout>>();
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Load Leaflet CSS once
   useEffect(() => {

@@ -335,7 +335,7 @@ export default function TutorDashboard() {
                           <div className={styles.sessionName}>{s.student_name as string}</div>
                           <div className={styles.sessionMeta}>
                             {formatDateTime(s.date as string, s.time as string, locale)}
-                            {(isAr ? s.subject_ar : s.subject_en) && ` · ${String(isAr ? s.subject_ar : s.subject_en)}`}
+                            {!!(isAr ? s.subject_ar : s.subject_en) && ` · ${String(isAr ? s.subject_ar : s.subject_en)}`}
                           </div>
                         </div>
                         <span className={`${styles.sessionBadge} ${isToday(s.date as string) ? styles.today : styles.future}`}>

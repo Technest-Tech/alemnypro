@@ -238,7 +238,7 @@ function BookingCard({ msg, isAr, bookingStatus, onAccept, onReject, accepting, 
           <span style={{ color: '#9CA3AF', marginInline: 4 }}>·</span>
           {m.lesson_format === 'online' ? (isAr ? '🖥️ أونلاين' : '🖥️ Online') : (isAr ? '🏠 حضوري' : '🏠 In-Person')}
         </div>
-        {m.preferred_date && (
+        {!!m.preferred_date && (
           <div className={s.cardDetail} style={{ color: '#92400E', fontSize: 12 }}>
             📅 {String(m.preferred_date)} {m.preferred_time ? `· ⏰ ${fmt12h(String(m.preferred_time), isAr)}` : ''}
           </div>
@@ -291,17 +291,17 @@ function ContactCard({ msg, isAr }: { msg: CMessage; isAr: boolean }) {
       <div className={s.cardTitle} style={{ color: '#065F46' }}>
         📱 {isAr ? 'بيانات التواصل المشتركة' : 'Contact Details Shared'}
       </div>
-      {m.phone && (
+      {!!m.phone && (
         <a href={`tel:${m.phone}`} className={s.contactLink} style={{ color: '#047857' }}>
           📞 <span>{String(m.phone)}</span>
         </a>
       )}
-      {m.email && (
+      {!!m.email && (
         <a href={`mailto:${m.email}`} className={s.contactLink} style={{ color: '#047857' }}>
           ✉️ <span>{String(m.email)}</span>
         </a>
       )}
-      {m.whatsapp && (
+      {!!m.whatsapp && (
         <a href={`https://wa.me/${String(m.whatsapp).replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" className={s.contactLink} style={{ color: '#25D366', borderBottom: 'none' }}>
           💬 <span>WhatsApp</span>
         </a>
