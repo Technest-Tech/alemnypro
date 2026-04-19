@@ -6,7 +6,7 @@ import { useLocale } from '@/lib/locale';
 import { tutorApi } from '@/lib/api';
 import DashboardLayout from '@/components/layout/DashboardLayout';
 import dashStyles from '../../../dashboard.module.css';
-import styles from '../../group-sessions.module.css';
+import styles from '../group-sessions.module.css';
 import Link from 'next/link';
 import { toast } from 'react-hot-toast';
 

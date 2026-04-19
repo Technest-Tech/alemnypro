@@ -149,12 +149,12 @@ export default function Header() {
       <header className={`${styles.header} ${isScrolled ? styles.headerScrolled : ''}`}>
         <div className={`container ${styles.inner}`}>
           {/* Logo */}
-          <Link href="/" className={styles.logo}>
+          <a href="/" className={styles.logo}>
             <span className={styles.logoIcon}>🎓</span>
             <span className={styles.logoText}>
               Alemny<span className={styles.logoAccent}>Pro</span>
             </span>
-          </Link>
+          </a>
 
           {/* Desktop Nav */}
           <nav className={styles.nav}>
@@ -266,9 +266,9 @@ export default function Header() {
         {/* Mobile Full-Screen Menu Overlay */}
         <div className={`${styles.mobileMenuOverlay} ${menuOpen ? styles.mobileMenuOverlayOpen : ''}`}>
           <nav className={styles.mobileNav}>
-            <Link href="/search"         className={mnl('/search')}         onClick={() => setMenuOpen(false)}>{t.nav.findTutor}</Link>
-            <Link href="/subjects"        className={mnl('/subjects')}        onClick={() => setMenuOpen(false)}>{t.nav.subjects}</Link>
-            <Link href="/become-a-tutor" className={mnl('/become-a-tutor')} onClick={() => setMenuOpen(false)}>{t.nav.becomeTutor}</Link>
+            <a href="/search"         className={mnl('/search')}         onClick={() => setMenuOpen(false)}>{t.nav.findTutor}</a>
+            <a href="/subjects"        className={mnl('/subjects')}        onClick={() => setMenuOpen(false)}>{t.nav.subjects}</a>
+            <a href="/become-a-tutor" className={mnl('/become-a-tutor')} onClick={() => setMenuOpen(false)}>{t.nav.becomeTutor}</a>
 
             <div className={styles.mobileActions}>
               {user ? (
@@ -285,21 +285,21 @@ export default function Header() {
                       </span>
                     </div>
                   </div>
-                  <Link href={dashboardUrl} className="btn btn-primary btn-md" style={{ width: '100%' }} onClick={() => setMenuOpen(false)}>
+                  <a href={dashboardUrl} className="btn btn-primary btn-md" style={{ width: '100%' }} onClick={() => setMenuOpen(false)}>
                     📊 {locale === 'ar' ? 'لوحة التحكم' : 'Dashboard'}
-                  </Link>
+                  </a>
                   <button className="btn btn-outline btn-md" style={{ width: '100%' }} onClick={handleLogout}>
                     🚪 {locale === 'ar' ? 'تسجيل الخروج' : 'Logout'}
                   </button>
                 </>
               ) : (
                 <>
-                  <Link href="/auth/login" className="btn btn-outline btn-md" style={{ width: '100%' }} onClick={() => setMenuOpen(false)}>
+                  <a href="/auth/login" className="btn btn-outline btn-md" style={{ width: '100%' }} onClick={() => setMenuOpen(false)}>
                     {t.nav.login}
-                  </Link>
-                  <Link href="/auth/register" className="btn btn-primary btn-md" style={{ width: '100%' }} onClick={() => setMenuOpen(false)}>
+                  </a>
+                  <a href="/auth/register" className="btn btn-primary btn-md" style={{ width: '100%' }} onClick={() => setMenuOpen(false)}>
                     {t.nav.register}
-                  </Link>
+                  </a>
                 </>
               )}
             </div>
@@ -308,13 +308,12 @@ export default function Header() {
       </header>
 
       {/* ── Mobile Bottom Navigation Bar ── */}
-      {/* isMounted guard prevents SSR/client hydration mismatch */}
       {isMounted && (
         <nav className={styles.bottomNav} aria-label="Mobile navigation">
           {/* Home */}
-          <button
+          <a
+            href="/"
             className={`${styles.bottomNavItem} ${isBottomNavActive('/') ? styles.bottomNavItemActive : ''}`}
-            onClick={() => router.push('/')}
           >
             <span className={styles.bottomNavIcon}>
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -323,12 +322,12 @@ export default function Header() {
               </svg>
             </span>
             <span className={styles.bottomNavLabel}>{locale === 'ar' ? 'الرئيسية' : 'Home'}</span>
-          </button>
+          </a>
 
           {/* Search */}
-          <button
+          <a
+            href="/search"
             className={`${styles.bottomNavItem} ${isBottomNavActive('/search') ? styles.bottomNavItemActive : ''}`}
-            onClick={() => router.push('/search')}
           >
             <span className={styles.bottomNavIcon}>
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -337,12 +336,12 @@ export default function Header() {
               </svg>
             </span>
             <span className={styles.bottomNavLabel}>{locale === 'ar' ? 'البحث' : 'Search'}</span>
-          </button>
+          </a>
 
           {/* Subjects */}
-          <button
+          <a
+            href="/subjects"
             className={`${styles.bottomNavItem} ${isBottomNavActive('/subjects') ? styles.bottomNavItemActive : ''}`}
-            onClick={() => router.push('/subjects')}
           >
             <span className={styles.bottomNavIcon}>
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -351,12 +350,12 @@ export default function Header() {
               </svg>
             </span>
             <span className={styles.bottomNavLabel}>{locale === 'ar' ? 'المواد' : 'Subjects'}</span>
-          </button>
+          </a>
 
           {/* Account / Login */}
-          <button
+          <a
+            href={bottomNavAccountHref}
             className={`${styles.bottomNavItem} ${(isBottomNavActive('/auth/login') || isBottomNavActive('/dashboard') || isBottomNavActive('/admin')) ? styles.bottomNavItemActive : ''}`}
-            onClick={() => router.push(bottomNavAccountHref)}
           >
             <span className={styles.bottomNavIcon}>
               {user ? (
@@ -375,7 +374,7 @@ export default function Header() {
                 ? (locale === 'ar' ? 'حسابي' : 'Account')
                 : (locale === 'ar' ? 'دخول' : 'Login')}
             </span>
-          </button>
+          </a>
         </nav>
       )}
     </>
