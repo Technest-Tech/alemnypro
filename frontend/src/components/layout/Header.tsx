@@ -1,5 +1,4 @@
 'use client';
-/* eslint-disable @next/next/no-html-link-for-pages */
 
 import Link from 'next/link';
 import { useLocale } from '@/lib/locale';
@@ -32,7 +31,7 @@ export default function Header() {
   const [menuOpen, setMenuOpen]       = useState(false);
   const [isScrolled, setIsScrolled]   = useState(false);
   const [user, setUser]               = useState<StoredUser | null>(null);
-  const [liveAvatar, setLiveAvatar]   = useState<string | null>(null); // fresh from /auth/me
+  const [liveAvatar, setLiveAvatar]   = useState<string | null>(null);
   const [isMounted, setIsMounted]     = useState(false);
   const [dropOpen, setDropOpen]       = useState(false);
   const [imgError, setImgError]       = useState(false);
@@ -44,14 +43,12 @@ export default function Header() {
     const stored = localStorage.getItem('alemnypro_user');
     if (stored) setUser(JSON.parse(stored));
 
-    // Fetch latest avatar from /auth/me (silently — non-blocking)
     const token = localStorage.getItem('alemnypro_token');
     if (token) {
       authApi.me().then(r => {
         const data = r.data?.data;
         if (data?.avatar) {
           setLiveAvatar(data.avatar);
-          // Keep localStorage in sync
           const s = localStorage.getItem('alemnypro_user');
           if (s) {
             const parsed = JSON.parse(s);
@@ -59,17 +56,14 @@ export default function Header() {
             localStorage.setItem('alemnypro_user', JSON.stringify(parsed));
           }
         }
-      }).catch(() => { /* ignore — user just sees initials */ });
+      }).catch(() => { /* ignore */ });
     }
 
-    // Listen for in-modal login / avatar update events
     const onAuthChange = () => {
       const s = localStorage.getItem('alemnypro_user');
       setUser(s ? JSON.parse(s) : null);
       setLiveAvatar(null);
       setImgError(false);
-
-      // Re-fetch fresh avatar after auth change
       const tok = localStorage.getItem('alemnypro_token');
       if (tok) {
         authApi.me().then(r => {
@@ -115,7 +109,6 @@ export default function Header() {
     router.push('/');
   };
 
-  // Resolved avatar: prefer live fetch → localStorage → null (show initials)
   const avatarSrc = imgError ? null : (liveAvatar || user?.avatar || null);
   const initials  = user?.name?.charAt(0)?.toUpperCase() || '?';
 
@@ -143,18 +136,17 @@ export default function Header() {
 
   const bottomNavAccountHref = user ? dashboardUrl : '/auth/login';
 
-
   return (
     <>
       <header className={`${styles.header} ${isScrolled ? styles.headerScrolled : ''}`}>
         <div className={`container ${styles.inner}`}>
           {/* Logo */}
-          <a href="/" className={styles.logo}>
+          <Link href="/" className={styles.logo}>
             <span className={styles.logoIcon}>🎓</span>
             <span className={styles.logoText}>
               Alemny<span className={styles.logoAccent}>Pro</span>
             </span>
-          </a>
+          </Link>
 
           {/* Desktop Nav */}
           <nav className={styles.nav}>
@@ -174,10 +166,8 @@ export default function Header() {
             </button>
 
             {!isMounted ? (
-              /* ── Hydration placeholder ── */
               <div style={{ width: 140, height: 36 }} />
             ) : user ? (
-              /* ── Logged-in: avatar dropdown ── */
               <div className={styles.userMenu} ref={dropRef}>
                 <button
                   className={styles.avatarBtn}
@@ -192,7 +182,6 @@ export default function Header() {
 
                 {dropOpen && (
                   <div className={styles.dropdown}>
-                    {/* Dropdown header — shows full avatar + name + role */}
                     <div className={styles.dropHeader}>
                       <div className={styles.dropHeaderAvatar}>
                         <AvatarCircle size={42} />
@@ -233,7 +222,6 @@ export default function Header() {
                 )}
               </div>
             ) : (
-              /* ── Logged-out: Login + Register ── */
               <>
                 <Link href="/auth/login" className={`btn btn-ghost btn-sm ${styles.loginBtn}`}>
                   {t.nav.login}
@@ -266,14 +254,13 @@ export default function Header() {
         {/* Mobile Full-Screen Menu Overlay */}
         <div className={`${styles.mobileMenuOverlay} ${menuOpen ? styles.mobileMenuOverlayOpen : ''}`}>
           <nav className={styles.mobileNav}>
-            <a href="/search"         className={mnl('/search')}         onClick={() => setMenuOpen(false)}>{t.nav.findTutor}</a>
-            <a href="/subjects"        className={mnl('/subjects')}        onClick={() => setMenuOpen(false)}>{t.nav.subjects}</a>
-            <a href="/become-a-tutor" className={mnl('/become-a-tutor')} onClick={() => setMenuOpen(false)}>{t.nav.becomeTutor}</a>
+            <Link href="/search"         className={mnl('/search')}         onClick={() => setMenuOpen(false)}>{t.nav.findTutor}</Link>
+            <Link href="/subjects"        className={mnl('/subjects')}        onClick={() => setMenuOpen(false)}>{t.nav.subjects}</Link>
+            <Link href="/become-a-tutor" className={mnl('/become-a-tutor')} onClick={() => setMenuOpen(false)}>{t.nav.becomeTutor}</Link>
 
             <div className={styles.mobileActions}>
               {user ? (
                 <>
-                  {/* Mobile: show avatar + name row */}
                   <div className={styles.mobileUserRow}>
                     <AvatarCircle size={40} />
                     <div className={styles.mobileUserInfo}>
@@ -285,21 +272,21 @@ export default function Header() {
                       </span>
                     </div>
                   </div>
-                  <a href={dashboardUrl} className="btn btn-primary btn-md" style={{ width: '100%' }} onClick={() => setMenuOpen(false)}>
+                  <Link href={dashboardUrl} className="btn btn-primary btn-md" style={{ width: '100%' }} onClick={() => setMenuOpen(false)}>
                     📊 {locale === 'ar' ? 'لوحة التحكم' : 'Dashboard'}
-                  </a>
+                  </Link>
                   <button className="btn btn-outline btn-md" style={{ width: '100%' }} onClick={handleLogout}>
                     🚪 {locale === 'ar' ? 'تسجيل الخروج' : 'Logout'}
                   </button>
                 </>
               ) : (
                 <>
-                  <a href="/auth/login" className="btn btn-outline btn-md" style={{ width: '100%' }} onClick={() => setMenuOpen(false)}>
+                  <Link href="/auth/login" className="btn btn-outline btn-md" style={{ width: '100%' }} onClick={() => setMenuOpen(false)}>
                     {t.nav.login}
-                  </a>
-                  <a href="/auth/register" className="btn btn-primary btn-md" style={{ width: '100%' }} onClick={() => setMenuOpen(false)}>
+                  </Link>
+                  <Link href="/auth/register" className="btn btn-primary btn-md" style={{ width: '100%' }} onClick={() => setMenuOpen(false)}>
                     {t.nav.register}
-                  </a>
+                  </Link>
                 </>
               )}
             </div>
@@ -310,8 +297,7 @@ export default function Header() {
       {/* ── Mobile Bottom Navigation Bar ── */}
       {isMounted && (
         <nav className={styles.bottomNav} aria-label="Mobile navigation">
-          {/* Home */}
-          <a
+          <Link
             href="/"
             className={`${styles.bottomNavItem} ${isBottomNavActive('/') ? styles.bottomNavItemActive : ''}`}
           >
@@ -322,10 +308,9 @@ export default function Header() {
               </svg>
             </span>
             <span className={styles.bottomNavLabel}>{locale === 'ar' ? 'الرئيسية' : 'Home'}</span>
-          </a>
+          </Link>
 
-          {/* Search */}
-          <a
+          <Link
             href="/search"
             className={`${styles.bottomNavItem} ${isBottomNavActive('/search') ? styles.bottomNavItemActive : ''}`}
           >
@@ -336,10 +321,9 @@ export default function Header() {
               </svg>
             </span>
             <span className={styles.bottomNavLabel}>{locale === 'ar' ? 'البحث' : 'Search'}</span>
-          </a>
+          </Link>
 
-          {/* Subjects */}
-          <a
+          <Link
             href="/subjects"
             className={`${styles.bottomNavItem} ${isBottomNavActive('/subjects') ? styles.bottomNavItemActive : ''}`}
           >
@@ -350,10 +334,9 @@ export default function Header() {
               </svg>
             </span>
             <span className={styles.bottomNavLabel}>{locale === 'ar' ? 'المواد' : 'Subjects'}</span>
-          </a>
+          </Link>
 
-          {/* Account / Login */}
-          <a
+          <Link
             href={bottomNavAccountHref}
             className={`${styles.bottomNavItem} ${(isBottomNavActive('/auth/login') || isBottomNavActive('/dashboard') || isBottomNavActive('/admin')) ? styles.bottomNavItemActive : ''}`}
           >
@@ -374,7 +357,7 @@ export default function Header() {
                 ? (locale === 'ar' ? 'حسابي' : 'Account')
                 : (locale === 'ar' ? 'دخول' : 'Login')}
             </span>
-          </a>
+          </Link>
         </nav>
       )}
     </>
